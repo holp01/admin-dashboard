@@ -1,32 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import {
     Card,
-    Typography
+    Typography,
+    Button
 } from "@material-tailwind/react";
 import { getEvents } from '../../../services/apiService';
 
+import EventCreateModal from './EventCreateModal';
+
 function Events() {
     const [events, setEvents] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const fetchEvents = async () => {
+        try {
+            const fetchedEvents = await getEvents();
+            setEvents(fetchedEvents);
+        } catch (error) {
+            console.error("Error fetching events:", error.message);
+        }
+    };
 
     useEffect(() => {
-        const fetchEvents = async () => {
-            try {
-                const fetchedEvents = await getEvents();
-                setEvents(fetchedEvents);
-            } catch (error) {
-                console.error("Error fetching events:", error.message);
-            }
-        };
-
         fetchEvents();
     }, []);
 
     return (
         <div>
-            <Card className="p-3 mb-2">
+           <Card className="p-3 mb-2 flex flex-row justify-between items-center">
                 <Typography variant="h5" color="blue-gray">
-                    Events List
+                   Events List
                 </Typography>
+                <Button
+                    onClick={() => setIsModalOpen(true)}
+                >
+                    + New
+                </Button>
             </Card>
             <Card className="h-full w-full">
                 <table className="w-full min-w-max table-auto text-left">
@@ -102,6 +111,11 @@ function Events() {
                     </tbody>
                 </table>
             </Card>
+            <EventCreateModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                onAdd={fetchEvents}
+            />
         </div>
     );
 }

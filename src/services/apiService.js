@@ -42,9 +42,19 @@ export const createPartner = async (partner) => {
     }
 }
 
+//Events
 export const getEvents = async () => {
     try {
         const response = await axiosInstance.get(`/events/get`);
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const createEvent = async (event) => {
+    try {
+        const response = await axiosInstance.post(`/events/create`, event);
         return response.data;
     } catch (error) {
         throw error;
