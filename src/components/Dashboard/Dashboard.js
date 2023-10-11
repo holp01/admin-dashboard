@@ -73,13 +73,13 @@ function Dashboard() {
                         </ListItemPrefix>
                         Users
                     </ListItem>
-                    <ListItem selected={selected === 1} onClick={() => setSelectedItem(2)}>
+                    <ListItem selected={selected === 2} onClick={() => setSelectedItem(2)}>
                         <ListItemPrefix>
                             <UserCircleIcon className="h-5 w-5" />
                         </ListItemPrefix>
                         Partners
                     </ListItem>
-                    <ListItem selected={selected === 1} onClick={() => setSelectedItem(3)}>
+                    <ListItem selected={selected === 3} onClick={() => setSelectedItem(3)}>
                         <ListItemPrefix>
                             <Cog6ToothIcon className="h-5 w-5" />
                         </ListItemPrefix>
@@ -95,7 +95,7 @@ function Dashboard() {
             </Card>
 
             {/* Main Content Area */}
-            <div className="flex-1 p-6">
+            <div className="flex-1 p-6 bg-gray-200">
                 {content === "users" && <Users />}
                 {content === "partners" && <Partners />}
                 {content === "events" && <Events />}

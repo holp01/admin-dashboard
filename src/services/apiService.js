@@ -13,3 +13,12 @@ export const login = async (username, password) => {
         throw error;
     }
 }
+
+export const getUsers = async () => {
+    try {
+        const response = await axiosInstance.get(`/user/users`);
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}
