@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from 'react-router-dom';
+import Login from './components/Login/Login';
+import Dashboard from './components/Dashboard/Dashboard';
+
+// Hypothetical AuthContext
+const AuthContext = React.createContext();
+
+export const useAuth = () => {
+    return useContext(AuthContext);
+}
 
 function App() {
+  const [user, setUser] = useState(null); // Initially, no user is logged in
+
+  const login = async (credentials) => {
+    // Here, make your API call to log in
+    // If successful, update the user state
+    // const loggedInUser = await apiLoginCall(credentials);
+    // setUser(loggedInUser);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthContext.Provider value={{ user, login }}>
+      <Router>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={user ? <Dashboard /> : <Navigate to="/login" />} />
+          {/* Redirect to login by default */}
+          <Route path="*" element={<Navigate to="/login" />} />
+        </Routes>
+      </Router>
+    </AuthContext.Provider>
   );
 }
 
