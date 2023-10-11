@@ -22,11 +22,10 @@ function Login() {
     const { login: authLogin } = useAuth(); // Renamed to authLogin to avoid naming clash
     const navigate = useNavigate();
 
-    const handleLogin = async () => {
+    const handleLogin = async (event) => {
+        event.preventDefault();
+
         try {
-            console.log(email);
-            
-            console.log(password);
             const data = await login(email, password);
             localStorage.setItem('token', data.token);
             localStorage.setItem('refreshToken', data.refreshToken);
@@ -52,15 +51,17 @@ function Login() {
                         Sign In
                     </Typography>
                 </CardHeader>
-                <CardBody className="flex flex-col gap-4">
-                    <Input label="Email" size="lg" onChange={e => setEmail(e.target.value)} />
-                    <Input label="Password" type="password" size="lg" onChange={e => setPassword(e.target.value)} />
-                </CardBody>
-                <CardFooter className="pt-0">
-                    <Button variant="gradient" fullWidth onClick={handleLogin}>
-                        Sign In
-                    </Button>
-                </CardFooter>
+                <form onSubmit={handleLogin}>
+                    <CardBody className="flex flex-col gap-4">
+                        <Input label="Email" size="lg" onChange={e => setEmail(e.target.value)} />
+                        <Input label="Password" type="password" size="lg" onChange={e => setPassword(e.target.value)} />
+                    </CardBody>
+                    <CardFooter className="pt-0">
+                        <Button type="submit" variant="gradient" fullWidth>
+                            Sign In
+                        </Button>
+                    </CardFooter>
+                </form>
             </Card>
         </div>
     );
