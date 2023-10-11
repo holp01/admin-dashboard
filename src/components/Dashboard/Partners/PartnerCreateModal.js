@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import {
     Button,
     Dialog,
-    DialogHeader,
-    DialogBody,
     DialogFooter,
-    Input
+    Input,
+    Typography,
+    Card,
+    CardHeader,
+    CardBody
 } from '@material-tailwind/react';
 import { createPartner } from '../../../services/apiService';
 
@@ -24,42 +26,51 @@ function PartnerCreateModal({ isOpen, onClose, onAdd }) {
     };
 
     return (
-        <Dialog open={isOpen} handler={onClose}>
-            <DialogHeader>Create New Partner</DialogHeader>
-            <DialogBody divider>
-                <Input 
-                    type="text" 
-                    color="lightBlue" 
-                    size="regular" 
-                    outline={true}
-                    placeholder="Partner Name" 
-                    value={name} 
-                    onChange={e => setName(e.target.value)}
-                />
-                <Input 
-                    type="text" 
-                    color="lightBlue" 
-                    size="regular" 
-                    outline={true}
-                    placeholder="Description" 
-                    value={description} 
-                    onChange={e => setDescription(e.target.value)}
-                    className="mt-2"
-                />
-            </DialogBody>
-            <DialogFooter>
-                <Button
-                    variant="text"
-                    color="red"
-                    onClick={onClose}
-                    className="mr-1"
+        <Dialog open={isOpen} handler={onClose} className="bg-transparent shadow-none">
+            <Card className="mx-auto w-full max-w-[30rem]">
+                <CardHeader
+                    variant="gradient"
+                    color="blue"
+                    className="mb-4 grid h-28 place-items-center"
                 >
-                    Cancel
-                </Button>
-                <Button variant="gradient" color="green" onClick={handleSubmit}>
-                    Add Partner
-                </Button>
-            </DialogFooter>
+                    <Typography variant="h3" color="white">
+                        Create New Partner
+                    </Typography>
+                </CardHeader>
+                <CardBody className="flex flex-col gap-4">
+                    <Input
+                        type="text"
+                        color="lightBlue"
+                        size="lg"
+                        outline={true}
+                        label="Name"
+                        value={name}
+                        onChange={e => setName(e.target.value)}
+                    />
+                    <Input
+                        type="text"
+                        color="lightBlue"
+                        size="lg"
+                        outline={true}
+                        label="Description"
+                        value={description}
+                        onChange={e => setDescription(e.target.value)}
+                    />
+                </CardBody>
+                <DialogFooter>
+                    <Button
+                        variant="text"
+                        color="red"
+                        onClick={onClose}
+                        className="mr-1"
+                    >
+                        Cancel
+                    </Button>
+                    <Button variant="gradient" color="green" onClick={handleSubmit}>
+                        Submit
+                    </Button>
+                </DialogFooter>
+            </Card>
         </Dialog>
     );
 }

@@ -125,7 +125,7 @@ function EventCreateModal({ isOpen, onClose, onAdd }) {
                         Cancel
                     </Button>
                     <Button variant="gradient" color="green" onClick={handleSubmit}>
-                        Add Event
+                        Submit
                     </Button>
                 </DialogFooter>
             </Card>
