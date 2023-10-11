@@ -3,7 +3,7 @@ import {
     Card,
     Typography
 } from "@material-tailwind/react";
-import { getEvents } from '../../services/apiService';
+import { getEvents } from '../../../services/apiService';
 
 function Events() {
     const [events, setEvents] = useState([]);

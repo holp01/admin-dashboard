@@ -4,7 +4,7 @@ import {
     Typography,
     Button
 } from "@material-tailwind/react";
-import { getPartners } from '../../services/apiService';
+import { getPartners } from '../../../services/apiService';
 import PartnerCreateModal from './PartnerCreateModal';
 
 function Partners() {

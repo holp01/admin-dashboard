@@ -7,7 +7,7 @@ import {
     DialogFooter,
     Input
 } from '@material-tailwind/react';
-import { createPartner } from '../../services/apiService';
+import { createPartner } from '../../../services/apiService';
 
 function PartnerCreateModal({ isOpen, onClose, onAdd }) {
     const [name, setName] = useState('');

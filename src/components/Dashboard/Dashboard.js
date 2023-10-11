@@ -26,8 +26,8 @@ import {
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 
 import Users from './Users';
-import Partners from './Partners';
-import Events from './Events';
+import Partners from './Partners/Partners';
+import Events from './Events/Events';
 
 function Dashboard() {
     const [selected, setSelected] = React.useState(1);
