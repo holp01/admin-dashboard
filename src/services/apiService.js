@@ -1,24 +1,15 @@
 // services/apiService.js
 
-const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+import axiosInstance from './axiosConfig';
 
-export const login = async (email, password) => {
-    console.log(BASE_URL);
-    const response = await fetch(`${BASE_URL}/user/login`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            Email: email,
+export const login = async (username, password) => {
+    try {
+        const response = await axiosInstance.post(`/user/login`, {
+            Email: username,
             Password: password
-        })
-    });
-
-    if (!response.ok) {
-        const data = await response.json();
-        throw new Error(data.message || 'Something went wrong');
+        });
+        return response.data;
+    } catch (error) {
+        throw error;
     }
-
-    return await response.json();
 }

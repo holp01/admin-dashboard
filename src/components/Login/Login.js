@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
-import { login as apiLogin } from '../../services/apiService';
+import { login } from '../../services/apiService';
 import { useAuth } from '../../App';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const auth = useAuth();
+    const { login: authLogin } = useAuth(); // Renamed to authLogin to avoid naming clash
     const navigate = useNavigate();
 
     const handleLogin = async () => {
         try {
-            const userData = await apiLogin(email, password);
-            console.log("Logged in:", userData);
-
-            auth.login(userData); // Updating user in context
+            const data = await login(email, password);
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('refreshToken', data.refreshToken);
+            authLogin({ token: data.token, refreshToken: data.refreshToken });
+            console.log("Logged in:", data.token);
 
             navigate('/dashboard'); // Redirecting to dashboard
         } catch (error) {
