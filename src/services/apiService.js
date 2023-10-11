@@ -23,6 +23,7 @@ export const getUsers = async () => {
     }
 }
 
+//Partners
 export const getPartners = async () => {
     try {
         const response = await axiosInstance.get(`/partners/get`);
@@ -31,6 +32,16 @@ export const getPartners = async () => {
         throw error;
     }
 }
+
+export const createPartner = async (partner) => {
+    try {
+        const response = await axiosInstance.post(`/partners/create`, partner);
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}
+
 export const getEvents = async () => {
     try {
         const response = await axiosInstance.get(`/events/get`);
