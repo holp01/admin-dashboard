@@ -31,7 +31,7 @@ import Events from './Events';
 
 function Dashboard() {
     const [selected, setSelected] = React.useState(1);
-    const [content, setContent] = React.useState("dashboard"); // To hold the current content
+    const [content, setContent] = React.useState("users"); // To hold the current content
 
     const setSelectedItem = (value) => {
         setSelected(value);

@@ -7,7 +7,7 @@ import { getPartners } from '../../services/apiService';
 
 function Partners() {
     const [partners, setPartners] = useState([]);
-
+    
     useEffect(() => {
         const fetchPartners = async () => {
             try {

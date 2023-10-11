@@ -7,7 +7,7 @@ import { getUsers } from '../../services/apiService';
 
 function Users() {
     const [users, setUsers] = useState([]);
-    console.log(users);
+    
     useEffect(() => {
         const fetchUsers = async () => {
             try {
