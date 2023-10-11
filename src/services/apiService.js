@@ -31,3 +31,11 @@ export const getPartners = async () => {
         throw error;
     }
 }
+export const getEvents = async () => {
+    try {
+        const response = await axiosInstance.get(`/events/get`);
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}
