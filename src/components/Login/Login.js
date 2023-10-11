@@ -2,6 +2,19 @@ import React, { useState } from 'react';
 import { login } from '../../services/apiService';
 import { useAuth } from '../../App';
 import { useNavigate } from 'react-router-dom';
+import {
+    Button,
+    Dialog,
+    Card,
+    CardHeader,
+    CardBody,
+    DialogFooter,
+    Input,
+    Switch,
+    Typography,
+    Checkbox,
+    CardFooter
+} from '@material-tailwind/react';
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -11,6 +24,9 @@ function Login() {
 
     const handleLogin = async () => {
         try {
+            console.log(email);
+            
+            console.log(password);
             const data = await login(email, password);
             localStorage.setItem('token', data.token);
             localStorage.setItem('refreshToken', data.refreshToken);
@@ -25,41 +41,27 @@ function Login() {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-md w-full space-y-8">
-                <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-                    Sign in to your dashboard
-                </h2>
-                <form className="mt-8 space-y-6">
-                    <input type="hidden" name="remember" value="true" />
-                    <div className="rounded-md shadow-sm -space-y-px">
-                        <div>
-                            <label htmlFor="username" className="sr-only">Username</label>
-                            <input
-                                id="email"
-                                name="email"
-                                type="email"
-                                autoComplete="email"
-                                required
-                                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                placeholder="Email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="password" className="sr-only">Password</label>
-                            <input id="password" name="password" type="password" autoComplete="current-password" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                        </div>
-                    </div>
-
-                    <div>
-                        <button type="button" onClick={handleLogin} className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            Sign In
-                        </button>
-                    </div>
-                </form>
-            </div>
+        <div className="flex h-screen items-center justify-center"> {/* This div centers the Card */}
+            <Card className="w-96">
+                <CardHeader
+                    variant="gradient"
+                    color="gray"
+                    className="mb-4 grid h-28 place-items-center"
+                >
+                    <Typography variant="h3" color="white">
+                        Sign In
+                    </Typography>
+                </CardHeader>
+                <CardBody className="flex flex-col gap-4">
+                    <Input label="Email" size="lg" onChange={e => setEmail(e.target.value)} />
+                    <Input label="Password" type="password" size="lg" onChange={e => setPassword(e.target.value)} />
+                </CardBody>
+                <CardFooter className="pt-0">
+                    <Button variant="gradient" fullWidth onClick={handleLogin}>
+                        Sign In
+                    </Button>
+                </CardFooter>
+            </Card>
         </div>
     );
 }
