@@ -22,3 +22,12 @@ export const getUsers = async () => {
         throw error;
     }
 }
+
+export const getPartners = async () => {
+    try {
+        const response = await axiosInstance.get(`/partners/get`);
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}
