@@ -48,7 +48,7 @@ function Login() {
                     className="mb-4 grid h-28 place-items-center"
                 >
                     <Typography variant="h3" color="white">
-                        Sign In
+                        Welcome
                     </Typography>
                 </CardHeader>
                 <form onSubmit={handleLogin}>
