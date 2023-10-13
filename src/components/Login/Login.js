@@ -17,10 +17,15 @@ import {
 } from '@material-tailwind/react';
 
 function Login() {
+    const { user, login: authLogin } = useAuth(); // Get user and authLogin at once
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { login: authLogin } = useAuth(); // Renamed to authLogin to avoid naming clash
-    const navigate = useNavigate();
+
+    if (user) {
+        navigate('/dashboard');
+        return null; // Return nothing to render
+    }
 
     const handleLogin = async (event) => {
         event.preventDefault();
