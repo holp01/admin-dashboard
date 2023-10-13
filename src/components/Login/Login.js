@@ -16,11 +16,14 @@ import {
     CardFooter
 } from '@material-tailwind/react';
 
+import ErrorModal from '../shared/ErrorModal';
+
 function Login() {
     const { user, login: authLogin } = useAuth(); // Get user and authLogin at once
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [loginError, setLoginError] = useState(null);
 
     if (user) {
         navigate('/dashboard');
@@ -41,6 +44,7 @@ function Login() {
         } catch (error) {
             console.error("Login error:", error.message);
             // TODO: Provide user feedback through an error message on the UI.
+            setLoginError("Wrong Email or Password");
         }
     }
 
@@ -68,6 +72,7 @@ function Login() {
                     </CardFooter>
                 </form>
             </Card>
+            <ErrorModal isOpen={loginError !== null} onClose={() => setLoginError(null)} errorMessage={loginError} />
         </div>
     );
 }
