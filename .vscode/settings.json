@@ -1,8 +1,0 @@
-{
-    "appService.zipIgnorePattern": [
-        "node_modules{,/**}",
-        ".vscode{,/**}"
-    ],
-    "appService.defaultWebAppToDeploy": "/subscriptions/edccaf09-e338-45df-924d-e3f5f81c4714/resourceGroups/BikeLaneAPI/providers/Microsoft.Web/sites/bikelaneadmindashboard",
-    "appService.deploySubpath": "."
-}
