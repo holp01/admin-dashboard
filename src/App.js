@@ -10,8 +10,8 @@ export const useAuth = () => {
 }
 
 function App() {
-    const [user, setUser] = useState(null);
-
+    const [user, setUser] = useState(localStorage.getItem('token') ? {} : null);
+    
     const login = (userData) => {
         setUser(userData);
     };
